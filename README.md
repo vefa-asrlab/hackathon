@@ -9,6 +9,8 @@ Vefa ASR Lab Hackathon
 If you want to create a venv (Optional):
 ```bash
 $ python -m venv venv
+
+# To activate venv
 $ . venv/bin/activate
 ```
 
