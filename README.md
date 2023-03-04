@@ -1,5 +1,5 @@
 # hackathon
-Vefa ASR Lab Hackathon
+Vefa ASR Lab Hackathon, followed tutorial to set up server: https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-22-04
 
 ## Dependencies
 - Ubuntu 22.04
