@@ -2,36 +2,23 @@
 Vefa ASR Lab Hackathon
 
 ## Dependencies
-* Flask
-* Waitress (For deploying to production)
+- Ubuntu 22.04
 
-### Installation 
-If you want to create a venv (Optional):
+## Installation
+You must use the installation script as a normal user (with sudo privileges, the script will ask sudo password).
+
+To install on a new server with default configs and without domain (for this, project must be on directory "~/hackathon"):
 ```bash
-$ python -m venv venv
-
-# To activate venv
-$ . venv/bin/activate
+$ chmod +x install.sh
+$ ./install.sh
 ```
 
-Install dependencies:
+You can specify project name with -n argument (server directory needs to be at ~/<PROJECT_NAME>):
 ```bash
-$ pip install flask
-$ pip install waitress
+$ ./install.sh -n <PROJECT_NAME>
 ```
 
-## Usage & Dependencies (Deploying to Production)
-For safety, after developing your application you should use a dedicated WSGI server or hosting platform.
-
-Run web app by typing:
+You can specify domain with -d argument (This will get an SSL certificate for your domain):
 ```bash
-$ python main.py app
-```
-
-## For developing
-In this mode, you should develop locally, it is not safe to make it available publicly to other users.
-
-Run web app in develop mode by typing:
-```bash
-$ python main.py dev
+$ ./install.sh -d <DOMAIN>
 ```
