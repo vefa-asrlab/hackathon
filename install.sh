@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Please run as normal user
 
 PROJECT_NAME="hackathon"
@@ -10,7 +10,7 @@ while getopts ":d:n:" o; do
 			PROJECT_NAME="${OPTARG}"
 			;;
 		d)
-			DOMAIN=$(OPTARG}
+			DOMAIN="${OPTARG}"
 			;;
 		*)
 			echo "Wrong argument"
@@ -23,11 +23,11 @@ venvname=${PROJECT_NAME}venv
 
 echo "Installing necessary packages..."
 
-sudo apt update
-sudo apt install nginx
+sudo apt update &> /dev/null
+sudo apt install nginx &> /dev/null
 
-sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
-sudo apt install python3-venv
+sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools &> /dev/null
+sudo apt install python3-venv &> /dev/null
 
 cd ~/$PROJECT_NAME
 python3 -m venv $venvname
@@ -35,11 +35,11 @@ source $venvname/bin/activate
 pip install wheel
 pip install gunicorn flask
 
-gunicorn --bind 0.0.0.0:5000 wsgi:app
+#gunicorn --bind 0.0.0.0:5000 wsgi:app
 
 deactivate
 
-echo "Creating service ${PROJECT_NAME}.service"
+sudo echo "Creating service ${PROJECT_NAME}.service"
 
 sudo echo "[Unit]
 Description=Gunicorn instance to serve $PROJECT_NAME
@@ -53,7 +53,7 @@ Environment=\"PATH=/home/$(whoami)/$PROJECT_NAME/$venvname/bin\"
 ExecStart=/home/$(whoami)/$venvname/bin/gunicorn --workers 3 --bind unix:${PROJECT_NAME}.sock -m 007 wsgi:app
 
 [Install]
-WantedBy=multi-user.target" > /etc/systemd/system/${PROJECT_NAME}.service
+WantedBy=multi-user.target" | sudo tee /etc/systemd/system/${PROJECT_NAME}.service
 
 sudo systemctl start $PROJECT_NAME
 sudo systemctl enable $PROJECT_NAME
@@ -72,7 +72,7 @@ sudo echo "server {
 		include proxy_params;
 		proxy_pass http://unix:/home/$(whoami)/$PROJECT_NAME/${PROJECT_NAME}.sock;
 	}
-}" > /etc/nginx/sites-available/$PROJECT_NAME
+} " > /etc/nginx/sites-available/$PROJECT_NAME
 
 sudo ln -s /etc/nginx/sites-available/$PROJECT_NAME /etc/nginx/sites-enabled
 sudo nginx -t
@@ -89,4 +89,4 @@ sudo apt install python3-certbot-nginx
 sudo certbot --nginx -d $DOMAIN -d www.$DOMAIN
 sudo ufw delete allow 'Nginx HTTP'
 
-echo "You can access your website by https://$DOMAIN"
+echo "You can access your website by https://${DOMAIN}"
