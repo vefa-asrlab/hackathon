@@ -30,7 +30,10 @@ sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev p
 sudo apt install python3-venv
 
 cd ~/$PROJECT_NAME
+python3 -m venv $venvname
 source $venvname/bin/activate
+pip install wheel
+pip install gunicorn flask
 
 gunicorn --bind 0.0.0.0:5000 wsgi:app
 
