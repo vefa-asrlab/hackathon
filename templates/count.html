@@ -1,0 +1,88 @@
+<!-- HTML code -->
+<body>
+<div class="counter">
+  <h1>Hackathon'a Kalan Süre</h1>
+  <div class="countdown">
+    <div class="days">
+      <span id="days"></span>
+      <p>Days</p>
+    </div>
+    <div class="hours">
+      <span id="hours"></span>
+      <p>Hours</p>
+    </div>
+    <div class="minutes">
+      <span id="minutes"></span>
+      <p>Minutes</p>
+    </div>
+    <div class="seconds">
+      <span id="seconds"></span>
+      <p>Seconds</p>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  // JavaScript code
+  // Get the elements
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
+
+  // Set the target date
+  const newYear = new Date("April 14, 2023");
+
+  // Update the countdown every second
+  setInterval(updateCountdown, 1000);
+
+  // Define the update function
+  function updateCountdown() {
+    // Get the current date and time
+    const now = new Date();
+
+    // Calculate the difference in milliseconds
+    const diff = newYear - now;
+
+    // Convert the difference to days, hours, minutes and seconds
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    // Display the values
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minutesEl.textContent = minutes;
+    secondsEl.textContent = seconds;
+  }
+</script>
+
+<style>
+/* CSS code */
+* {
+  box-sizing: border-box;
+}
+
+.counter {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+}
+
+.countdown > div {
+  margin: 10px;
+}
+
+.countdown > div > span {
+  font-size: 3rem;
+}
+
+.countdown > div > p {
+  color: #777;
+}
+</style>

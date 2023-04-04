@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    Document Title
+    =============================================
+    -->
+    <title>AsrLab</title>
+    <!--
+    Favicons
+    =============================================
+    -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static',filename='images/yurtsimp.png')}}">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!--
+    Stylesheets
+    =============================================
+
+    -->
+    <!-- Default stylesheets-->
+    <link href="{{ url_for('static',filename='lib/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Template specific stylesheets-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="{{ url_for('static',filename='lib/animate.css/animate.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='lib/components-font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='lib/et-line-font/et-line-font.css" rel="stylesheet')}}">
+    <link href="{{ url_for('static',filename='lib/flexslider/flexslider.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='lib/owl.carousel/dist/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='lib/owl.carousel/dist/assets/owl.theme.default.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='lib/magnific-popup/dist/magnific-popup.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='lib/simple-text-rotator/simpletextrotator.css')}}" rel="stylesheet">
+    <!-- Main stylesheet and color file-->
+    <link href="{{ url_for('static',filename='css/style.css')}}" rel="stylesheet">
+    <link id="color-scheme" href="{{ url_for('static',filename='css/colors/default.css')}}" rel="stylesheet">
+  </head>
+  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+    <main>
+      <div class="page-loader">
+        <div class="loader">Loading...</div>
+      </div>
+      <nav class="navbar navbar-custom navbar-fixed-top one-page" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">ASRLAB</a>
+          </div>
+          <div class="collapse navbar-collapse" id="custom-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="index.html">Ana Sayfa</a></li>
+              <li><a href="hackathon.html">Hackathon</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </section>
+      <div class="main">
+        <section class="module bg-dark-60 portfolio-page-header" data-background="assets/images/bg-index-2.jpg">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Soru 1</h2>
+                <div class="module-subtitle font-serif">Can you find where Forest is running?</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="module" style="margin-bottom: -50px; margin-top: -250px;">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-md-8 col-lg-8"><img src="{{ url_for('static',filename='images/soru1.jpg')}}" alt="Forest runs too fast."/></div>
+              <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="work-details" style="margin-top: 150px;">
+                  <h5 class="work-details-title font-alt">Soru 1 - Açıklama:</h5>
+                  <p>Forest 3 gün boyunca aralıksız koşmaktadır. Bu durumda Forest'ın yol üzerinde ASRLAB'a denk gelme olasılığının hexadecimal olarak kodlanışı nasıldır?</p>
+                  <ul>
+                    <li><strong>Zorluk: </strong><span><a class=>Kolay</a></span>
+                    </li>
+                    <li><strong>Diğer Detaylar: </strong><span><a>Buraya</a></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="container" style="margin-bottom: 150px;">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <h2 class="module-title font-alt">Dosyalarını Yükle!</h2>
+              <div class="module-subtitle font-serif"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+                <div class="col-auto">
+                  <h1 style="text-align: center;" class="form-label">Dosya Seç</h1>
+                  <input id="file-picker" type="file" name="file" class="form-control" accept=".zip">
+                </div>
+                <div class="col-auto">
+                  <input class="align-center" type="submit"  value="Upload!" style="opacity: 0; overflow: hidden; position: absolute; z-index: -1;" id="upload-button">
+                  
+                  <label for="upload-button" style="margin-top: 10px; display: block; "><i class="fa fa-cloud-upload" style="margin-right: 5px;"></i>Upload</label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <hr class="divider-d">
+        <footer class="footer bg-dark">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="copyright font-alt">&copy; 2022&nbsp;<a href="index.html">ASRLAB</a>, Bütün Hakları Saklıdır.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+    </main>
+    <!--
+    JavaScripts
+    =============================================
+    -->
+    <script src="{{ url_for('static',filename='lib/jquery/dist/jquery.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/wow/dist/wow.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/isotope/dist/isotope.pkgd.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/imagesloaded/imagesloaded.pkgd.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/flexslider/jquery.flexslider.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/owl.carousel/dist/owl.carousel.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/smoothscroll.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/magnific-popup/dist/jquery.magnific-popup.js')}}"></script>
+    <script src="{{ url_for('static',filename='lib/simple-text-rotator/jquery.simple-text-rotator.min.js')}}"></script>
+    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK2Axt8xiFYMBMDwwG1XzBQvEbYpzCvFU"></script>
+    <script src="{{ url_for('static',filename='js/plugins.js')}}"></script>
+    <script src="{{ url_for('static',filename='js/main.js')}}"></script>
+  </body>
+</html>
